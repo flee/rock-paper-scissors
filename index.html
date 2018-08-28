@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function computerPlay(){
+            var rando = Math.floor(Math.random()*3);
+            switch(rando){
+                case 0:
+                    return 'Rock';
+                    break;
+                case 1:
+                    return 'Scissors';
+                    break;
+                case 2:
+                    return 'Paper';
+                    break;
+                default:
+                    return 'Error';
+            }
+        }
+
+    function playRound(playerSel, compSel){
+        playerSel = playerSel.charAt(0).toUpperCase()+playerSel.slice(1).toLowerCase();
+        
+        var playerVal=string2val(playerSel);
+        var compVal = string2val(compSel);
+        console.log('Player val ' + playerVal);
+        console.log('Comp val '+ compVal);
+        var diff = compVal - playerVal;
+        console.log(diff);
+        if(diff==1){
+            return `You lose! ${compSel} beats ${playerSel.toLowerCase()}`;
+        } else if(diff==2){
+            return `You win! Rock beats scissors`;
+        } else if (diff==-1){
+            return `You win! ${playerSel} beats ${compSel.toLowerCase()}`;
+        } else if(diff==-2){
+            return `You lose! Rock beats scissors`;
+        } else if(diff==0){
+            return "It's a tie! You both chose "+ playerSel.toLowerCase();
+        }else{
+            console.log('else...');
+            return "Oops...something's gone wrong..."
+        }
+
+
+    }
+
+    
+    function game(){
+        var possOptions = ["paper", "rock", "scissors"];
+        var playerSel =  prompt("Choose your fighter;\n rock, paper or scissors?");;
+        
+        while(true){
+            if(possOptions.indexOf(playerSel)>=0){
+                break;
+            }
+            console.log(playerSel);
+            playerSel = prompt("You typed something weird...try again. \n\n Choose your fighter;\n rock, paper or scissors?");
+        }
+
+        var compSel = computerPlay();
+        console.log('You chose '+ playerSel.toLowerCase() +'...');
+        console.log('The computer chose '+ compSel.toLowerCase() +'...');
+        var solution = playRound(playerSel,compSel);
+        console.log(solution);
+    }
+
+    function string2val(str){
+        str = str.toLowerCase();
+        if(str=="rock"){
+            return 0;
+        } else if(str=="paper"){
+            return 1;
+        } else if (str=="scissors"){
+            return 2;
+        }
+        }
+
+        game();
+    
+
+    </script>
+</body>
+</html>
